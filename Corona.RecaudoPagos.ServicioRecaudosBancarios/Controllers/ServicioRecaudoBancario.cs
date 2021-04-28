@@ -23,7 +23,6 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 {
 	public class ServicioRecaudoBancario : IServicioRecaudosBancarios
 	{
-		private readonly ILogger<ServicioRecaudoBancario> logger;
 		private bool  autenticado = false;
 		private readonly  IHttpContextAccessor _accessor;
 
@@ -106,9 +105,8 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			}
 			catch (Exception ex)
 			{
-				logger.LogError($"Ha ocurrido un error consultaRecaudo/ServicioRecaudosBancarios: {ex.Message}");
 				objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.BANCO_MENSAJE10, TipoMensaje.Banco);
-				responseData.codigoRespuestaNotificacion = objMensaje.Valor;
+				responseData.codigoRespuestaNotificacion = objMensaje.Valor +  ".Excepción: " + ex;
 				return responseData;
 			}
 		}
@@ -174,9 +172,8 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			}
 			catch (Exception ex)
 			{
-				logger.LogError($"Ha ocurrido un error notificacionRecaudo/ServicioRecaudosBancarios: {ex.Message}");
 				objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.BANCO_MENSAJE10, TipoMensaje.Banco);
-				responseData.codigoRespuestaNotificacion = objMensaje.Valor;
+				responseData.codigoRespuestaNotificacion = objMensaje.Valor + ".Excepción: " + ex;
 				return responseData;
 			}
 		}
@@ -212,10 +209,9 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			}
 			catch (Exception ex)
 			{
-				logger.LogError($"Ha ocurrido un error VerificarEstadoWebService/ServicioRecaudosBancarios: {ex.Message}");
 				DTOMensaje objMensaje = new DTOMensaje();
 				objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.BANCO_MENSAJE10, TipoMensaje.Banco);
-				responseData.codigoRespuesta = objMensaje.Valor;
+				responseData.codigoRespuesta = objMensaje.Valor + ".Excepción: " + ex;
 				return responseData;
 			}
 		}
