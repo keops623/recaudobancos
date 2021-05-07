@@ -82,7 +82,7 @@ stages:
           SonarQube: 'Sonar_Corona'
           scannerMode: 'MSBuild'
           projectKey: RecaudosServicioBanco
-          projectName: RecaudosServicioBanco     
+          projectName: RecaudosServicioBanco
           projectVersion: '1'
           extraProperties: |
             sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml
