@@ -1,19 +1,146 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# ASP.NET CORE (.NET FRAMEWORK)
 
-trigger:
-- develop
+#  activador para ejecutar una canalización automática
+trigger: 
+ - develop
+ - master
 
+# agente alojado en Microsoft
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# variables de ejecución
+variables:
+- name: imagePullSecrets
+  value: 'secret'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# etapas de contrucción
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: BuildProject
+    displayName: Build Project
+
+    steps:
+      # Instala la version 5.x de .net Core
+      - task: UseDotNet@2 
+        displayName: "Instalar .NET Core 5.x"
+        inputs:
+          version: '5.x'
+      # instala la versión 3.1.103 de .NET Core
+      - task: UseDotNet@2 
+        displayName: "Instalar .NET Core 3.x"
+        inputs:
+          version: '3.x'
+          packageType: sdk
+
+      # instala la versión 2.1.505 de SonarQube
+      - task: UseDotNet@2
+        displayName: 'Use .NET Core SDK 2.1.505 para SonarQube'
+        inputs:
+          version: '2.x'
+
+      # configurar GUID para la solución
+      - task: PowerShell@2
+        displayName: Configurar GUID para la solución
+        inputs:
+          targetType: 'inline'
+          script: |
+              $paths = Get-ChildItem -include *.csproj -Recurse
+              foreach($pathobject in $paths) 
+              {
+                  $path = $pathobject.fullname
+                  $doc = New-Object System.Xml.XmlDocument
+                  $doc.Load($path)
+                  $child = $doc.CreateElement("ProjectGuid")
+                  $child.InnerText = [guid]::NewGuid().ToString().ToUpper()
+                  $node = $doc.SelectSingleNode("//Project/PropertyGroup")
+                  $node.AppendChild($child)
+                  $doc.Save($path)
+              }
+
+      # restaura dependencias
+      #- task: DotNetCoreCLI@2
+      #  displayName: 'Restore dependencies'
+      #  inputs:
+      #    command: restore
+      #    projects: '**/*.csproj'
+
+      # construye el proyecto y sus dependencias
+      - task: DotNetCoreCLI@2
+        displayName: 'Build project'
+        inputs:
+          projects: '**/*.csproj'
+          arguments: '--output publish_output --configuration Release'
+
+      # prepara la configuracion del analisis para sonar
+      - task: SonarQubePrepare@4
+        displayName: 'SonarQube - Preparar sonarScanner'
+        enabled: true
+        inputs:
+          SonarQube: 'Sonar_Corona'
+          scannerMode: 'MSBuild'
+          projectKey: RecaudosServicioBanco
+          projectName: RecaudosServicioBanco     
+          projectVersion: '1'
+          extraProperties: |
+            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml
+
+      # ejecuta pruebas unitarias
+      #- task: DotNetCoreCLI@2
+      #  displayName: 'Run unit tests - Release'
+      #  enabled: true
+      #  inputs:
+      #    command: 'test'
+      #    arguments: '--configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat="cobertura%2copencover" /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
+      #    publishTestResults: true
+      #    projects: '**/*.Test.csproj'
+
+      # ejecuta análisis de sonar
+      - task: SonarQubeAnalyze@4
+        displayName: 'SonarQube - Ejecutar análisis'
+      
+      # sonar buildbreaker rompe la construcción
+      - task: sonar-buildbreaker@8
+        inputs:
+          SonarQube: 'Sonar_Corona'
+
+      - task: SonarQubePublish@4
+        inputs:
+          pollingTimeoutSec: '300'
+
+      # publica la aplicación y sus dependencias en una carpeta para su implementación
+      - task: DotNetCoreCLI@2
+        displayName: Publish
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          arguments: '-c Release -o $(System.DefaultWorkingDirectory)/publish/project'
+          zipAfterPublish: false
+          modifyOutputPath: false
+          workingDirectory: '$(System.DefaultWorkingDirectory)/'
+
+      # representa un paquete de archivos comprimidos en formato zip
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish/'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(System.DefaultWorkingDirectory)/artifact.zip'
+          replaceExistingArchive: true
+
+      # Compila y publica el docker en el Container Registry de Corona
+      - task: Docker@2
+        displayName: buildAndPushDocker
+        inputs:
+         containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
+         repository: 'imgserviciobancosoapdevops'
+      
+      # Configura el docker en el azure function
+      - task: AzureFunctionAppContainer@1
+        displayName: 'Azure Function App on Container Deploy: ServicioWebClients-RecaudosPagosCoronaQA'
+        inputs:
+          azureSubscription: 'Dev_Recaudos_Pagos_Corona_QA'
+          appName: 'RecaudosPagosCorona'
+          imageName: 'imgserviciobancosoapdevops:$(Build.BuildId)'
