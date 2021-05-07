@@ -1,11 +1,8 @@
-﻿using Corona.RecaudoPagos.BM.Parametro;
+using Corona.RecaudoPagos.BM.Parametro;
 using Corona.RecaudoPagos.DM.Datos;
 using Corona.RecaudoPagos.DT.Entidades;
 using Corona.RecaudoPagos.DT.General;
 using Corona.RecaudoPagos.DT.Notificacion;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;

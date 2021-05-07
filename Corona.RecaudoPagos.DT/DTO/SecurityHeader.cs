@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ServiceModel.Channels;
-using System.Text;
 using System.Xml;
 
 namespace Corona.RecaudoPagos.DT.DTO

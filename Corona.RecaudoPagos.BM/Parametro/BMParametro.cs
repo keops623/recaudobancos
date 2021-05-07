@@ -1,8 +1,5 @@
-﻿using Corona.RecaudoPagos.DM.Datos;
+using Corona.RecaudoPagos.DM.Datos;
 using Corona.RecaudoPagos.DT.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Corona.RecaudoPagos.BM.Parametro
 {

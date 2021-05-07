@@ -83,30 +83,6 @@ namespace SoapCore
 
 			writer.WriteStartElement("Fault", Namespaces.SOAP11_ENVELOPE_NS);
 
-			/* SUPPORT FOR SPECIFYING CUSTOM FAULTCODE AND NAMESPACE
-
-			For Example, this would result in the response below:
-			throw new System.ServiceModel.FaultException(new FaultReason("faultString1"), new FaultCode("faultCode1", "faultNamespace1"), "action1");
-			<s:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
-				<s:Body>
-					<s:Fault>
-						<a:faultcode xmlns:a="faultNamespace1">a:faultCode1</a:faultcode>
-						<faultstring>faultString1</faultstring>
-					</s:Fault>
-				</s:Body>
-			</s:Envelope>
-
-			For Example, this would result in the response below:
-			throw new System.ServiceModel.FaultException(new FaultReason("faultString1"), new FaultCode("faultCode1"), "action1");
-			<s:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
-				<s:Body>
-					<s:Fault>
-						<faultcode>s:faultCode1</faultcode>
-						<faultstring>faultString1</faultstring>
-					</s:Fault>
-				</s:Body>
-			</s:Envelope>
-			*/
 			if (_exception is FaultException)
 			{
 				var faultException = (FaultException)_exception;

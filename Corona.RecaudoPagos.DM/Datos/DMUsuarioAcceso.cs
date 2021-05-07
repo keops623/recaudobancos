@@ -1,9 +1,6 @@
-﻿using Corona.RecaudoPagos.DM.AccesoDM;
+using Corona.RecaudoPagos.DM.AccesoDM;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace Corona.RecaudoPagos.DM.Datos
 {
@@ -20,7 +17,6 @@ namespace Corona.RecaudoPagos.DM.Datos
             DMAccesoDatosMySql gestorDB = new DMAccesoDatosMySql();
             gestorDB.AgregarParametro("@IN_USUARIO", MySqlDbType.VarChar, usuario);
             gestorDB.AgregarParametro("@IN_CLAVE", MySqlDbType.VarChar, clave);
-            //return gestorDB.EjecutarScalar(Resources.ProcedimientosAlmacenados.SP_CONSULTA_USUARIO_ACCESO)?.ToString().Trim();
             DataSet datos = gestorDB.EjecutarReaderProcedimiento(Resources.ProcedimientosAlmacenados.SP_CONSULTA_USUARIO_ACCESO);
             if (datos.Tables[0].Rows.Count > 0)
                 return true;

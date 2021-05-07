@@ -198,7 +198,7 @@ namespace SoapCore
 			responseMessage = new MetaMessage(responseMessage, _service, _binding, _xmlNamespaceManager);
 
 			//we should use text/xml in wsdl page for browser compability.
-			httpContext.Response.ContentType = "text/xml;charset=UTF-8"; // _messageEncoders[0].ContentType;
+			httpContext.Response.ContentType = "text/xml;charset=UTF-8"; 
 
 			await WriteMessageAsync(_messageEncoders[0], responseMessage, httpContext);
 		}
@@ -668,7 +668,6 @@ namespace SoapCore
 						var innerParameterNs = messageBodyMemberAttribute.Namespace ?? @namespace;
 						var innerParameterType = messageBodyMemberInfo.GetPropertyOrFieldType();
 
-						//xmlReader.MoveToStartElement(innerParameterName, innerParameterNs);
 						var innerParameter = _serializerHelper.DeserializeInputParameter(
 							xmlReader,
 							innerParameterType,

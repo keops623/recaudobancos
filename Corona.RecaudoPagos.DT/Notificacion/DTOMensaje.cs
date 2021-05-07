@@ -1,11 +1,7 @@
-using Microsoft.AspNetCore.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using static Corona.RecaudoPagos.DT.Notificacion.DTOComponentes;
@@ -96,65 +92,6 @@ namespace Corona.RecaudoPagos.DT.Notificacion
         #endregion
 
         #region Métodos
-
-        /// <summary>
-        /// Lee el archivo xml que contiene la lista de mensajes basado en los códigos.
-        /// </summary>
-        /// <returns>Nodo con la información respectiva del mensaje.</returns>
-        private static XPathDocument ObtenerArchivoMensajes()
-        {
-            string rutaArchivo = ObtenerRutaArchivoMensajes();
-
-            if (!File.Exists(rutaArchivo))
-            {
-                string mensaje = string.Format(MENSAJE_ARCHIVO, rutaArchivo);
-                throw new FileNotFoundException(mensaje);
-            }
-
-            XPathDocument documentoMensajes = new XPathDocument(rutaArchivo);
-            XDocument xdoc = XDocument.Load(rutaArchivo);
-            return documentoMensajes;
-        }
-
-        private static XDocument ObtenerXmlMensajes()
-        {
-            string rutaArchivo = ObtenerRutaArchivoMensajes();
-
-            if (!File.Exists(rutaArchivo))
-            {
-                string mensaje = string.Format(MENSAJE_ARCHIVO, rutaArchivo);
-                throw new FileNotFoundException(mensaje);
-            }
-
-            XDocument documentoMensajes = XDocument.Load(rutaArchivo);
-            return documentoMensajes;
-        }
-
-        /// <summary>
-        /// Obtiene la ruta del archivo de mensajes. Este metodo utiliza las costantes de
-        /// precompilacion PLATAFORMA_ASPNET y PLATAFORMA_WINDOWS, para establecer el
-        /// mecanismo de lectura de la ruta.
-        /// </summary>
-        /// <returns>Ruta del archivo de mensajes.</returns>
-        private static string ObtenerRutaArchivoMensajes()
-        {
-            string rutaArchivoConfiguracion = string.Empty;
-
-            var webRoot = Environment.CurrentDirectory;
-            //HttpRuntime.AppDomainAppId
-            if (webRoot != null)
-            {
-                rutaArchivoConfiguracion = string.Format("{0}\\{1}", AppDomain.CurrentDomain.RelativeSearchPath, @"Notificacion\" + NOMBRE_ARCHIVO_MENSAJES);
-
-            }
-            else
-            {
-                rutaArchivoConfiguracion = string.Format("{0}\\{1}", AppDomain.CurrentDomain.BaseDirectory, @"Notificacion\" + NOMBRE_ARCHIVO_MENSAJES);
-            }
-
-            return rutaArchivoConfiguracion;
-        }
-
         /// <summary>
         /// Consulta la información (desde el repositorio de mensajes) necesaria para crear
         /// un mensaje según el código. Establece los valores para las variables de clase.
@@ -188,14 +125,10 @@ namespace Corona.RecaudoPagos.DT.Notificacion
 
             string entidad = Environment.GetEnvironmentVariable(appId + "entidad");
          
-            //ConfigurationManager.AppSettings[appId + ""].ToString();
-
             XElement xmlMessage;
             DTOMensaje objMensaje = new DTOMensaje();
             TextReader Archivo = MensaesXML();
             XDocument xDoc = XDocument.Load(Archivo);
-
-            //XDocument xDoc = ObtenerXmlMensajes();
 
             if (xDoc != null)
             {

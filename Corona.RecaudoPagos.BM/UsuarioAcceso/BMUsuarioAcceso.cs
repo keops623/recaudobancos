@@ -1,7 +1,4 @@
-﻿using Corona.RecaudoPagos.DM.Datos;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Corona.RecaudoPagos.DM.Datos;
 
 namespace Corona.RecaudoPagos.BM.UsuarioAcceso
 {

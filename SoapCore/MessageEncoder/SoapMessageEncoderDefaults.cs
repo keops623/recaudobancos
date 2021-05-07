@@ -11,7 +11,6 @@ namespace SoapCore.MessageEncoder
 	{
 		public static readonly Encoding[] SupportedEncodings = { Encoding.UTF8, Encoding.Unicode, Encoding.BigEndianUnicode };
 
-		// Desktop: System.ServiceModel.Configuration.ConfigurationStrings.Soap12WSAddressing10;
 		public static readonly CharSetEncoding[] CharSetEncodings =
 		{
 			new CharSetEncoding("utf-8", Encoding.UTF8),

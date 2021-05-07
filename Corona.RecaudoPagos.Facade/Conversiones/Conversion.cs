@@ -1,11 +1,10 @@
-﻿using Corona.RecaudoPagos.DT.DTO;
+using Corona.RecaudoPagos.DT.DTO;
 using Corona.RecaudoPagos.DT.Entidades;
 using Corona.RecaudoPagos.DT.General;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using static Corona.RecaudoPagos.DT.Notificacion.DTOComponentes;
 
 namespace Corona.RecaudoPagos.Facade.Conversiones

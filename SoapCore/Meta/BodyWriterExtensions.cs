@@ -62,17 +62,6 @@ namespace SoapCore.Meta
 
 				if (xmlSchemaProviderAttribute.IsAny)
 				{
-					//MetaWCFBodyWriter usage....
-					//writer.WriteAttributeString("name", name);
-					//writer.WriteAttributeString("nillable", "true");
-					//writer.WriteStartElement("xs", "complexType", Namespaces.XMLNS_XSD);
-					//writer.WriteStartElement("xs", "sequence", Namespaces.XMLNS_XSD);
-					//writer.WriteStartElement("xs", "any", Namespaces.XMLNS_XSD);
-					//writer.WriteAttributeString("minOccurs", "0");
-					//writer.WriteAttributeString("processContents", "lax");
-					//writer.WriteEndElement();
-					//writer.WriteEndElement();
-					//writer.WriteEndElement();
 					var sequence = new XmlSchemaSequence();
 					sequence.Items.Add(new XmlSchemaAny() { ProcessContents = XmlSchemaContentProcessing.Lax });
 					var complex = new XmlSchemaComplexType()

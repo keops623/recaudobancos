@@ -1,20 +1,14 @@
-﻿using Corona.RecaudoPagos.DT.General;
+using Corona.RecaudoPagos.DT.General;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Text;
 
 namespace Corona.RecaudoPagos.DM.AccesoDM
 {
     public class DMAccesoDatosMySql
     {
         #region Atributos
-        private const string stringConnectionDataBase = "strConnectionProjeto";
-        private const string schemaDataBase = "schemaProjeto";
-        private const string schemaTimeOut = "DataBaseTimeOut";
-
         private IList<DTOParametroBD> DTParametros = new List<DTOParametroBD>();
 
 
@@ -34,7 +28,6 @@ namespace Corona.RecaudoPagos.DM.AccesoDM
         {
             var Cadena = Environment.GetEnvironmentVariable("connectionString");
             return Cadena;
-                //ConfigurationManager.ConnectionStrings[Environment.GetEnvironmentVariable("connectionString")].ConnectionString;
         }
         /// <summary>
         /// Prepara el comando de MySql para la ejecución

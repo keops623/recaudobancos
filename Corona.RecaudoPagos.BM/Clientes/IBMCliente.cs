@@ -1,9 +1,6 @@
-﻿using Corona.RecaudoPagos.DT.DTO;
 using Corona.RecaudoPagos.DT.Entidades;
 using Corona.RecaudoPagos.DT.General;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Corona.RecaudoPagos.BM.Clientes
 {
