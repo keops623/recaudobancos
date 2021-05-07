@@ -66,7 +66,7 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 					}
 				}			
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				autenticado = false;
 			}

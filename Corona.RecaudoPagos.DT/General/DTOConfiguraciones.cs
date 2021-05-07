@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
+using System;
 
 namespace Corona.RecaudoPagos.DT.General
 {
@@ -28,11 +25,5 @@ namespace Corona.RecaudoPagos.DT.General
         /// <add key="TextoClave" value="QwertAsdfg12345.*" />
         /// </summary>
         public string TextoClave = Environment.GetEnvironmentVariable("TextoClave")?.ToString();
-
-        //public string RutaContingenciaAsobancaria = ConfigurationManager.AppSettings["RutaContingenciaAsobancaria"]?.ToString();
-        //public string RutaContingenciaProcesadosAsobancaria = ConfigurationManager.AppSettings["RutaContingenciaProcesadosAsobancaria"]?.ToString();
-
-        //public string RutaContingenciaDavivienda = ConfigurationManager.AppSettings["RutaContingenciaDavivienda"]?.ToString();
-        //public string RutaContingenciaProcesadosDavivienda = ConfigurationManager.AppSettings["RutaContingenciaProcesadosDavivienda"]?.ToString();
     }
 }

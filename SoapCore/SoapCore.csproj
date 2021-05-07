@@ -18,7 +18,7 @@
 		<DelaySign>false</DelaySign>
 		<AssemblyOriginatorKeyFile>SoapCore.snk</AssemblyOriginatorKeyFile>
 		<SignAssembly>true</SignAssembly>
-		<CodeAnalysisRuleSet>..\SoapCore.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>SoapCore.ruleset</CodeAnalysisRuleSet>
 		<LangVersion>8.0</LangVersion>
 	</PropertyGroup>
 
@@ -71,6 +71,10 @@
 		<PackageReference Include="System.ServiceModel.Http" Version="4.7.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AdditionalFiles Include="..\.sonarlint\recaudosserviciobanco\CSharp\SonarLint.xml" Link="SonarLint.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

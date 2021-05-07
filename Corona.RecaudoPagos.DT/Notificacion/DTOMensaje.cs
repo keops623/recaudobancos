@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -54,7 +54,6 @@ namespace Corona.RecaudoPagos.DT.Notificacion
         {
             //Todo:el gestor de mensajes no funciona porque hay una referencia circular entre capa soporte y capa DT
             this.Texto = ConsultarMensaje(codigo);
-            //this.Texto = "El GestorMensagem esta en construcción";
             this.Codigo = codigo;
             if (parametros != null)
             {
