@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Corona.RecaudoPagos.DT.DTO
 {
@@ -6,7 +6,7 @@ namespace Corona.RecaudoPagos.DT.DTO
     {
         public VerificarEstadoResponseDto()
         {
-            Org = "ALION";
+            Org = "CORONA";
         }
         public string codigoRespuesta { set; get; }
         public string Org { set; get; }
