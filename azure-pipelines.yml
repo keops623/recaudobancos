@@ -39,7 +39,7 @@ stages:
       - task: UseDotNet@2
         displayName: 'Use .NET Core SDK 2.1.505 para SonarQube'
         inputs:
-          version: '2.x'
+          version: '2.x'      
 
       # configurar GUID para la solución
       - task: PowerShell@2
