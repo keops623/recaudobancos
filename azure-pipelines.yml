@@ -131,16 +131,16 @@ stages:
           replaceExistingArchive: true
 
       # Compila y publica el docker en el Container Registry de Corona
-      - task: Docker@2
-        displayName: buildAndPushDocker
-        inputs:
-         containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
-         repository: 'imgserviciobancosoapdevops'
+      #- task: Docker@2
+      #  displayName: buildAndPushDocker
+      #  inputs:
+      #   containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
+      #   repository: 'imgserviciobancosoapdevops'
       
       # Configura el docker en el azure function
-      - task: AzureFunctionAppContainer@1
-        displayName: 'Azure Function App on Container Deploy: ServicioWebClients-RecaudosPagosCoronaQA'
-        inputs:
-          azureSubscription: 'Dev_Recaudos_Pagos_Corona_QA'
-          appName: 'RecaudosPagosCorona'
-          imageName: 'imgserviciobancosoapdevops:$(Build.BuildId)'
+      #- task: AzureFunctionAppContainer@1
+      #  displayName: 'Azure Function App on Container Deploy: ServicioWebClients-RecaudosPagosCoronaQA'
+      #  inputs:
+      #    azureSubscription: 'Dev_Recaudos_Pagos_Corona_QA'
+      #    appName: 'RecaudosPagosCorona'
+      #    imageName: 'imgserviciobancosoapdevops:$(Build.BuildId)'
