@@ -11,6 +11,29 @@ namespace Corona.RecaudoPagos.Facade.Conversiones
 {
     public class Conversion
     {
+
+        #region Insertar Clientes
+        /// <summary>
+        /// Convertir el objeto entrante del servicio al DTO
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public List<DTOCliente> ConvertirObjetoClienteToDTOCliente(List<ClienteDto> dto)
+        {
+            List<DTOCliente> DTOLCliente = new List<DTOCliente>();
+            DTOLCliente = dto.Select(cliente => new DTOCliente()
+            {
+                Sociedad = cliente.IdSociedad,
+                NIT = cliente.NroIdentificacion,
+                Cliente = cliente.IdCliente,
+                Central = cliente.IdCentral,
+            }).ToList();
+
+            return DTOLCliente;
+        }
+        #endregion
+
+
         #region Consulta
         /// <summary>
         /// Realiza el mapeo del objeto que se recibe de la entidad a la usada en el sistema para consulta
@@ -177,5 +200,6 @@ namespace Corona.RecaudoPagos.Facade.Conversiones
             return dtoReturn;
         }
         #endregion
+
     }
 }

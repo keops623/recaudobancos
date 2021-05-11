@@ -1,3 +1,4 @@
+
 namespace Corona.RecaudoPagos.DT.DTO
 {
     public class RecaudoDto
