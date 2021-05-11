@@ -7,7 +7,7 @@ trigger:
 
 # agente alojado en Microsoft
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 # variables de ejecución
 variables:
