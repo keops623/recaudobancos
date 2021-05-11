@@ -113,6 +113,5 @@ namespace Corona.RecaudoPagos.BM.Clientes
                 return ObjetoSalida;
             }
         }
-
     }
 }

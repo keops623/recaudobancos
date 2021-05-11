@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Corona.RecaudoPagos.DT.Entidades
 {
     public class DTOCliente

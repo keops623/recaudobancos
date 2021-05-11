@@ -7,7 +7,6 @@ namespace Corona.RecaudoPagos.BM.Clientes
     public interface IBMCliente
     {
         DTOObjetoGeneralSalida InsertarCliente(List<DTOCliente> dtoCliente);
-
         DTOObjetoGeneralSalida ConsultarCliente(DTOObjetoGeneral objDatos);
     }
 }
