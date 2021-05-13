@@ -9,11 +9,25 @@ variables:
   nombreImagen: imgserviciobancodevops
 
 steps:
+  - task: SonarQubePrepare@4
+    inputs:
+      SonarQube: 'Sonar_Corona'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'RecaudosServicioBanco'
+      cliProjectName: 'RecaudosServicioBanco'
+      cliSources: '.'
+
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
       projects: '**/*.csproj'
       arguments: '--output publish_output --configuration Release'
+  - task: SonarQubeAnalyze@4
+
+  - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: '300'
 
   - task: ArchiveFiles@2
     inputs: 
