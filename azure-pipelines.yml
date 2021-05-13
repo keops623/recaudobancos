@@ -25,6 +25,10 @@ steps:
       arguments: '--output publish_output --configuration Release'
   - task: SonarQubeAnalyze@4
 
+  - task: sonar-buildbreaker@8
+    inputs:
+      SonarQube: 'Sonar_Corona'
+
   - task: SonarQubePublish@4
     inputs:
       pollingTimeoutSec: '300'
