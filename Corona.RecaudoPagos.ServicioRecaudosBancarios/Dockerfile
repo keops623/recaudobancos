@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj", "Corona.RecaudoPagos.ServicioRecaudosBancarios/"]
 RUN dotnet restore "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj"
 COPY . .
-WORKDIR "/src/Corona.RecaudoPagos.ServicioRecaudosBancarios"
+WORKDIR "/Corona.RecaudoPagos.ServicioRecaudosBancarios"
 RUN dotnet build "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
 
 FROM build AS publish
