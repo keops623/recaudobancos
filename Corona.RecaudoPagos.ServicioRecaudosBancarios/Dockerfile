@@ -11,12 +11,12 @@ COPY ["Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj", "Corona.RecaudoPag
 RUN dotnet restore "Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj"
 COPY . .
 WORKDIR "/Corona.RecaudoPagos.ServicioRecaudosBancarios"
-RUN dotnet build "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
+RUN dotnet build "Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
+RUN dotnet publish "Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Corona.RecaudoPagos.ServicioRecaudosBancarios.dll"]
+ENTRYPOINT ["dotnet", "Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.dll"]
