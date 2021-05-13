@@ -1,0 +1,24 @@
+trigger:
+- develop
+
+pool:
+  vmImage: ubuntu-latest
+
+# Variables
+variables:
+  nombreImagen: imgserviciobancodevops
+
+steps:
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--output publish_output --configuration Release'
+
+  - task: ArchiveFiles@2
+    inputs: 
+      rootFolderOrFile: '$(Build.BinariesDirectory)'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
