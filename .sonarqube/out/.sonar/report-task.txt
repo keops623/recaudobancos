@@ -1,0 +1,6 @@
+projectKey=RecaudosServicioBanco
+serverUrl=https://sonar.corona.com.co:9443
+serverVersion=7.9.5.38598
+dashboardUrl=https://sonar.corona.com.co:9443/dashboard?id=RecaudosServicioBanco
+ceTaskId=AXldCX6sq_56fzxpxsg5
+ceTaskUrl=https://sonar.corona.com.co:9443/api/ce/task?id=AXldCX6sq_56fzxpxsg5
