@@ -9,7 +9,14 @@ variables:
   nombreImagen: imgserviciobancodevops
 
 steps:
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--output publish_output --configuration Release'
+
   - task: SonarQubePrepare@4
+    enabled: true
     inputs:
       SonarQube: 'Sonar_Corona'
       scannerMode: 'CLI'
@@ -17,12 +24,7 @@ steps:
       cliProjectKey: 'RecaudosServicioBanco'
       cliProjectName: 'RecaudosServicioBanco'
       cliSources: '.'
-
-  - task: DotNetCoreCLI@2
-    inputs:
-      command: 'build'
-      projects: '**/*.csproj'
-      arguments: '--output publish_output --configuration Release'
+  
   - task: SonarQubeAnalyze@4
 
   - task: sonar-buildbreaker@8
@@ -32,6 +34,16 @@ steps:
   - task: SonarQubePublish@4
     inputs:
       pollingTimeoutSec: '300'
+
+  - task: DotNetCoreCLI@2
+    # displayName: Publish
+    inputs:
+      command: 'publish'
+      publishWebProjects: true
+      arguments: '-c Release -o $(System.DefaultWorkingDirectory)/publish/project'
+      zipAfterPublish: false
+      modifyOutputPath: false
+      workingDirectory: '$(System.DefaultWorkingDirectory)/'
 
   - task: ArchiveFiles@2
     inputs: 
@@ -46,4 +58,4 @@ steps:
       containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
       repository: $(nombreImagen)
       command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+      Dockerfile: 'Dockerfile'
