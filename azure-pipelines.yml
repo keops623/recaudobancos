@@ -45,6 +45,6 @@ steps:
     inputs:
       containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
       repository: $(nombreImagen)
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+      # command: 'buildAndPush'
+      # Dockerfile: '**/Dockerfile'
 
