@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj", "Corona.RecaudoPagos.ServicioRecaudosBancarios/"]
+COPY ["Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj", "Corona.RecaudoPagos.ServicioRecaudosBancarios/"]
 RUN dotnet restore "Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj"
 COPY . .
-WORKDIR "/Corona.RecaudoPagos.ServicioRecaudosBancarios"
+WORKDIR "/src/Corona.RecaudoPagos.ServicioRecaudosBancarios"
 RUN dotnet build "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
 
 FROM build AS publish
