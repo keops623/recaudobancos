@@ -41,11 +41,6 @@ steps:
       archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
       replaceExistingArchive: true
 
-  - task: UseDotNet@2 
-    displayName: "Instalar .NET Core 5.x"
-    inputs:
-      version: '5.x'
-
   - task: Docker@2
     inputs:
       containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
