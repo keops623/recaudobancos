@@ -9,12 +9,6 @@ variables:
   nombreImagen: imgserviciobancodevops
 
 steps:
-  - task: DotNetCoreCLI@2
-    inputs:
-      command: 'build'
-      projects: '**/*.csproj'
-      arguments: '--output publish_output --configuration Release'
-
   - task: SonarQubePrepare@4
     enabled: true
     inputs:
@@ -22,6 +16,12 @@ steps:
       scannerMode: 'MSBuild'
       ProjectKey: 'RecaudosServicioBanco'
       ProjectName: 'RecaudosServicioBanco'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--output publish_output --configuration Release'
   
   - task: SonarQubeAnalyze@4
 
