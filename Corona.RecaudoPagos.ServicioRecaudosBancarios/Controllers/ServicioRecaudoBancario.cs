@@ -81,8 +81,8 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			try
 			{
 				bool UserAutenticado  = ServicioRecaudoBancarioAuth();
-			
-				DTOObjetoGeneralSalida ObjetoSalida = new DTOObjetoGeneralSalida();
+
+				DTOObjetoGeneralSalida ObjetoSalida;
 				Conversion Convertir = new Conversion();
 				if (!UserAutenticado)
 				{
@@ -121,7 +121,7 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 				bool UserAutenticado = ServicioRecaudoBancarioAuth();
 
 				DTOObjetoGeneralSalida ObjetoSalida = new DTOObjetoGeneralSalida();
-				List<DTOObjetoGeneral> ObjetoEntrada = new List<DTOObjetoGeneral>();
+				List<DTOObjetoGeneral> ObjetoEntrada;
 				Conversion Convertir = new Conversion();
 				if (!UserAutenticado)
 				{
@@ -185,8 +185,8 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			{
 				bool UserAutenticado = ServicioRecaudoBancarioAuth();
 
-				DTOObjetoGeneralSalida ObjetoSalida = new DTOObjetoGeneralSalida();
-				DTOMensaje objMensaje = new DTOMensaje();
+				DTOObjetoGeneralSalida ObjetoSalida;
+				DTOMensaje objMensaje;
 				responseData.ServerDt = DateTime.Now;
 				if (!UserAutenticado)
 				{
@@ -207,7 +207,7 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			}
 			catch (Exception ex)
 			{
-				DTOMensaje objMensaje = new DTOMensaje();
+				DTOMensaje objMensaje;
 				objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.BANCO_MENSAJE10, TipoMensaje.Banco);
 				responseData.codigoRespuesta = objMensaje.Valor + ".Excepción: " + ex;
 				return responseData;

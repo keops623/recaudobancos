@@ -92,7 +92,7 @@ namespace Corona.RecaudoPagos.BM.Clientes
                 xml.Append("</ROOT>");
 
                 ObjetoSalida.EstadoOperacion = new DMCliente().InsertarCliente(xml);
-                DTOMensaje objMensaje = new DTOMensaje();
+				DTOMensaje objMensaje;
                 if (ObjetoSalida.EstadoOperacion)
                 {
                     objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.BANCO_MENSAJE0, TipoMensaje.Banco);

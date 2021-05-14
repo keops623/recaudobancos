@@ -29,17 +29,7 @@ namespace Corona.RecaudoPagos.DM.AccesoDM
             var Cadena = Environment.GetEnvironmentVariable("connectionString");
             return Cadena;
         }
-        /// <summary>
-        /// Prepara el comando de MySql para la ejecución
-        /// </summary>
-        /// <param name="mySqlConnection">Conexion a la base de datos</param>
-        /// <param name="comando">Comando a ejecutar</param>
-        /// <returns>MySqlCommand Comando preparado</returns>
-        /// <author>Dairo Alejandro Rojas Montoya</author>
-        private MySqlCommand PrepararComando(MySqlConnection mySqlConnection, string comando)
-        {
-            return PrepararComando(mySqlConnection, CommandType.Text, comando);
-        }
+        
         /// <summary>
         /// Prepara el comando de MySql para la ejecución
         /// </summary>
