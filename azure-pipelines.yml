@@ -10,19 +10,19 @@ variables:
 
 steps:
   - task: SonarQubePrepare@4
+    enabled: true
     inputs:
       SonarQube: 'Sonar_Corona'
-      scannerMode: 'CLI'
-      configMode: 'manual'
-      cliProjectKey: 'RecaudosServicioBanco'
-      cliProjectName: 'RecaudosServicioBanco'
-      cliSources: '.'
+      scannerMode: 'MSBuild'
+      ProjectKey: 'RecaudosServicioBanco'
+      ProjectName: 'RecaudosServicioBanco'
 
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
       projects: '**/*.csproj'
       arguments: '--output publish_output --configuration Release'
+  
   - task: SonarQubeAnalyze@4
 
   - task: sonar-buildbreaker@8
@@ -33,6 +33,16 @@ steps:
     inputs:
       pollingTimeoutSec: '300'
 
+  - task: DotNetCoreCLI@2
+    # displayName: Publish
+    inputs:
+      command: 'publish'
+      publishWebProjects: true
+      arguments: '-c Release -o $(System.DefaultWorkingDirectory)/publish/project'
+      zipAfterPublish: false
+      modifyOutputPath: false
+      workingDirectory: '$(System.DefaultWorkingDirectory)/'
+
   - task: ArchiveFiles@2
     inputs: 
       rootFolderOrFile: '$(Build.BinariesDirectory)'
@@ -41,10 +51,9 @@ steps:
       archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
       replaceExistingArchive: true
 
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
-      repository: $(nombreImagen)
+  # - task: Docker@2
+    # inputs:
+      # containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
+      # repository: $(nombreImagen)
       # command: 'buildAndPush'
-      # Dockerfile: '**/Dockerfile'
-
+      # Dockerfile: 'Dockerfile'
