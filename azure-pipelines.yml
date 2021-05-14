@@ -19,11 +19,12 @@ steps:
     enabled: true
     inputs:
       SonarQube: 'Sonar_Corona'
-      scannerMode: 'CLI'
-      configMode: 'manual'
+      # scannerMode: 'CLI'
+      # configMode: 'manual'
+      scannerMode: 'MSBuild'
       cliProjectKey: 'RecaudosServicioBanco'
       cliProjectName: 'RecaudosServicioBanco'
-      cliSources: '.'
+      # cliSources: '.'
   
   - task: SonarQubeAnalyze@4
 
