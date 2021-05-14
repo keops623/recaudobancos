@@ -54,9 +54,9 @@ steps:
       archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
       replaceExistingArchive: true
 
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
-      repository: $(nombreImagen)
-      command: 'buildAndPush'
-      Dockerfile: 'Dockerfile'
+  # - task: Docker@2
+    # inputs:
+      # containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
+      # repository: $(nombreImagen)
+      # command: 'buildAndPush'
+      # Dockerfile: 'Dockerfile'
