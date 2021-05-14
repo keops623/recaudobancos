@@ -1,10 +1,8 @@
-﻿using Corona.RecaudoPagos.DM.AccesoDM;
+using Corona.RecaudoPagos.DM.AccesoDM;
 using Corona.RecaudoPagos.DT.General;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace Corona.RecaudoPagos.DM.Datos
 {

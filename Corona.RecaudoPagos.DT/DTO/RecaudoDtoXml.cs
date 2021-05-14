@@ -12,36 +12,11 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.xmlsoap.org/soap/envelope/", IsNullable = false)]
         public partial class Envelope
         {
-
-            private EnvelopeHeader headerField;
-
-            private EnvelopeBody bodyField;
+            /// <remarks/>
+            public EnvelopeHeader Header { get; set; }
 
             /// <remarks/>
-            public EnvelopeHeader Header
-            {
-                get
-                {
-                    return this.headerField;
-                }
-                set
-                {
-                    this.headerField = value;
-                }
-            }
-
-            /// <remarks/>
-            public EnvelopeBody Body
-            {
-                get
-                {
-                    return this.bodyField;
-                }
-                set
-                {
-                    this.bodyField = value;
-                }
-            }
+            public EnvelopeBody Body { get; set; }
         }
 
         /// <remarks/>
@@ -50,22 +25,9 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
         public partial class EnvelopeHeader
         {
-
-            private Security securityField;
-
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://service.recaudosbancarios.com/")]
-            public Security Security
-            {
-                get
-                {
-                    return this.securityField;
-                }
-                set
-                {
-                    this.securityField = value;
-                }
-            }
+            public Security Security { get; set; }
         }
 
         /// <remarks/>
@@ -75,21 +37,8 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://service.recaudosbancarios.com/", IsNullable = false)]
         public partial class Security
         {
-
-            private SecurityUsernameToken usernameTokenField;
-
             /// <remarks/>
-            public SecurityUsernameToken UsernameToken
-            {
-                get
-                {
-                    return this.usernameTokenField;
-                }
-                set
-                {
-                    this.usernameTokenField = value;
-                }
-            }
+            public SecurityUsernameToken UsernameToken { get; set; }
         }
 
         /// <remarks/>
@@ -98,36 +47,11 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://service.recaudosbancarios.com/")]
         public partial class SecurityUsernameToken
         {
-
-            private string usernameField;
-
-            private string passwordField;
-
             /// <remarks/>
-            public string Username
-            {
-                get
-                {
-                    return this.usernameField;
-                }
-                set
-                {
-                    this.usernameField = value;
-                }
-            }
-
+            public string Username { get; set; }
+            
             /// <remarks/>
-            public string Password
-            {
-                get
-                {
-                    return this.passwordField;
-                }
-                set
-                {
-                    this.passwordField = value;
-                }
-            }
+            public string Password { get; set; }
         }
 
         /// <remarks/>
@@ -136,22 +60,9 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
         public partial class EnvelopeBody
         {
-
-            private notificacionRecaudo notificacionRecaudoField;
-
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://service.recaudosbancarios.com/")]
-            public notificacionRecaudo notificacionRecaudo
-            {
-                get
-                {
-                    return this.notificacionRecaudoField;
-                }
-                set
-                {
-                    this.notificacionRecaudoField = value;
-                }
-            }
+            public notificacionRecaudo notificacionRecaudo { get; set; }
         }
 
         /// <remarks/>
@@ -161,21 +72,8 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://service.recaudosbancarios.com/", IsNullable = false)]
         public partial class notificacionRecaudo
         {
-
-            private notificacionRecaudoDto dtoField;
-
             /// <remarks/>
-            public notificacionRecaudoDto dto
-            {
-                get
-                {
-                    return this.dtoField;
-                }
-                set
-                {
-                    this.dtoField = value;
-                }
-            }
+            public notificacionRecaudoDto dto { get; set; }
         }
 
         /// <remarks/>
@@ -184,323 +82,68 @@ namespace Corona.RecaudoPagos.DT.DTO
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://service.recaudosbancarios.com/")]
         public partial class notificacionRecaudoDto
         {
-
-            private string canalRecaudoField;
-
-            private string codigoBancoField;
-
-            private string codigoConfirmacionRecaudoField;
-
-            private string codigoIACField;
-
-            private string fechaRecaudoField;
-
-            private string fechaVencimientoField;
-
-            private string formaPagoField;
-
-            private string horaRecaudoField;
-
-            private string jornadaRecaudoField;
-
-            private string numeroChequeField;
-
-            private string numeroConvenioField;
-
-            private string oficinaRecaudoField;
-
-            private string referencia1Field;
-
-            private string referencia2Field;
-
-            private string terminalRecaudoField;
-
-            private string tipoCanjeField;
-
-            private string tipoMonedaField;
-
-            private string valorChequeField;
-
-            private string valorEfectivoField;
-
-            private string valorTotalRecaudadoField;
-
-            private string valorFacturaField;
-
             /// <remarks/>
-            public string canalRecaudo
-            {
-                get
-                {
-                    return this.canalRecaudoField;
-                }
-                set
-                {
-                    this.canalRecaudoField = value;
-                }
-            }
-
+            public string canalRecaudo { get; set; }
+            
             /// <remarks/>
-            public string codigoBanco
-            {
-                get
-                {
-                    return this.codigoBancoField;
-                }
-                set
-                {
-                    this.codigoBancoField = value;
-                }
-            }
-
+            public string codigoBanco { get; set; }
+            
             /// <remarks/>
-            public string codigoConfirmacionRecaudo
-            {
-                get
-                {
-                    return this.codigoConfirmacionRecaudoField;
-                }
-                set
-                {
-                    this.codigoConfirmacionRecaudoField = value;
-                }
-            }
-
+            public string codigoConfirmacionRecaudo { get; set; }
+            
             /// <remarks/>
-            public string codigoIAC
-            {
-                get
-                {
-                    return this.codigoIACField;
-                }
-                set
-                {
-                    this.codigoIACField = value;
-                }
-            }
-
+            public string codigoIAC { get; set; }
+            
             /// <remarks/>
-            public string fechaRecaudo
-            {
-                get
-                {
-                    return this.fechaRecaudoField;
-                }
-                set
-                {
-                    this.fechaRecaudoField = value;
-                }
-            }
-
+            public string fechaRecaudo { get; set; }
+            
             /// <remarks/>
-            public string fechaVencimiento
-            {
-                get
-                {
-                    return this.fechaVencimientoField;
-                }
-                set
-                {
-                    this.fechaVencimientoField = value;
-                }
-            }
-
+            public string fechaVencimiento { get; set; }
+            
             /// <remarks/>
-            public string formaPago
-            {
-                get
-                {
-                    return this.formaPagoField;
-                }
-                set
-                {
-                    this.formaPagoField = value;
-                }
-            }
-
+            public string formaPago { get; set; }
+            
             /// <remarks/>
-            public string horaRecaudo
-            {
-                get
-                {
-                    return this.horaRecaudoField;
-                }
-                set
-                {
-                    this.horaRecaudoField = value;
-                }
-            }
-
+            public string horaRecaudo { get; set; }
+            
             /// <remarks/>
-            public string jornadaRecaudo
-            {
-                get
-                {
-                    return this.jornadaRecaudoField;
-                }
-                set
-                {
-                    this.jornadaRecaudoField = value;
-                }
-            }
-
+            public string jornadaRecaudo { get; set; }
+            
             /// <remarks/>
-            public string numeroCheque
-            {
-                get
-                {
-                    return this.numeroChequeField;
-                }
-                set
-                {
-                    this.numeroChequeField = value;
-                }
-            }
-
+            public string numeroCheque { get; set; }
+            
             /// <remarks/>
-            public string numeroConvenio
-            {
-                get
-                {
-                    return this.numeroConvenioField;
-                }
-                set
-                {
-                    this.numeroConvenioField = value;
-                }
-            }
-
+            public string numeroConvenio { get; set; }
+            
             /// <remarks/>
-            public string oficinaRecaudo
-            {
-                get
-                {
-                    return this.oficinaRecaudoField;
-                }
-                set
-                {
-                    this.oficinaRecaudoField = value;
-                }
-            }
-
+            public string oficinaRecaudo { get; set; }
+            
             /// <remarks/>
-            public string referencia1
-            {
-                get
-                {
-                    return this.referencia1Field;
-                }
-                set
-                {
-                    this.referencia1Field = value;
-                }
-            }
-
+            public string referencia1 { get; set; }
+            
             /// <remarks/>
-            public string referencia2
-            {
-                get
-                {
-                    return this.referencia2Field;
-                }
-                set
-                {
-                    this.referencia2Field = value;
-                }
-            }
-
+            public string referencia2 { get; set; }
+            
             /// <remarks/>
-            public string terminalRecaudo
-            {
-                get
-                {
-                    return this.terminalRecaudoField;
-                }
-                set
-                {
-                    this.terminalRecaudoField = value;
-                }
-            }
-
+            public string terminalRecaudo { get; set; }
+            
             /// <remarks/>
-            public string tipoCanje
-            {
-                get
-                {
-                    return this.tipoCanjeField;
-                }
-                set
-                {
-                    this.tipoCanjeField = value;
-                }
-            }
-
+            public string tipoCanje { get; set; }
+            
             /// <remarks/>
-            public string tipoMoneda
-            {
-                get
-                {
-                    return this.tipoMonedaField;
-                }
-                set
-                {
-                    this.tipoMonedaField = value;
-                }
-            }
-
+            public string tipoMoneda { get; set; }
+            
             /// <remarks/>
-            public string valorCheque
-            {
-                get
-                {
-                    return this.valorChequeField;
-                }
-                set
-                {
-                    this.valorChequeField = value;
-                }
-            }
-
+            public string valorCheque { get; set; }
+            
             /// <remarks/>
-            public string valorEfectivo
-            {
-                get
-                {
-                    return this.valorEfectivoField;
-                }
-                set
-                {
-                    this.valorEfectivoField = value;
-                }
-            }
-
+            public string valorEfectivo { get; set; }
+            
             /// <remarks/>
-            public string valorTotalRecaudado
-            {
-                get
-                {
-                    return this.valorTotalRecaudadoField;
-                }
-                set
-                {
-                    this.valorTotalRecaudadoField = value;
-                }
-            }
-
+            public string valorTotalRecaudado { get; set; }
+            
             /// <remarks/>
-            public string valorFactura
-            {
-                get
-                {
-                    return this.valorFacturaField;
-                }
-                set
-                {
-                    this.valorFacturaField = value;
-                }
-            }
+            public string valorFactura { get; set; }
         }
-
-
     }
 }
