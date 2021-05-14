@@ -20,8 +20,8 @@ steps:
     inputs:
       SonarQube: 'Sonar_Corona'
       scannerMode: 'MSBuild'
-      cliProjectKey: 'RecaudosServicioBanco'
-      cliProjectName: 'RecaudosServicioBanco'
+      ProjectKey: 'RecaudosServicioBanco'
+      ProjectName: 'RecaudosServicioBanco'
   
   - task: SonarQubeAnalyze@4
 
