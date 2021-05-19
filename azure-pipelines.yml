@@ -22,12 +22,21 @@ steps:
       command: 'build'
       projects: '**/*.csproj'
       arguments: '--output publish_output --configuration Release'
+  
   - task: dependency-check-build-task@6
     inputs:
       projectName: 'RecaudosServicioBanco'
       scanPath: '**/*.csproj'
       format: 'HTML'
       failOnCVSS: '10'
+  
+  - task: OWASPDependencyCheck@0
+    inputs:
+      outputDirectory: '$(Agent.TempDirectory)/dependency-scan-results'
+      scanDirectory: '$(Build.SourcesDirectory)'
+      outputFormat: 'HTML'
+      useSonarQubeIntegration: true
+  
   - task: SonarQubeAnalyze@4
 
   - task: sonar-buildbreaker@8
