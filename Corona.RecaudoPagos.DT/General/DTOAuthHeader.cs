@@ -1,8 +1,4 @@
-﻿using Corona.RecaudoPagos.DT.DTO;
 using Corona.RecaudoPagos.DT.Notificacion;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static Corona.RecaudoPagos.DT.Notificacion.DTOComponentes;
 
 namespace Corona.RecaudoPagos.DT.General
@@ -17,7 +13,7 @@ namespace Corona.RecaudoPagos.DT.General
             if (!Configuraciones.UsuarioWS.ToString().Equals(User) ||
                 !Configuraciones.ContrasenaWS.ToString().Equals(Password))
             {
-                DTOMensaje objMensaje = new DTOMensaje();
+				DTOMensaje objMensaje;
                 objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.GENERAL_MENSAJE2, TipoMensaje.General);
                 ObjetoSalida = new DTOObjetoGeneralSalida
                 {

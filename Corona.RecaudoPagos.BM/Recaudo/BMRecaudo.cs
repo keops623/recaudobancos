@@ -211,7 +211,7 @@ namespace Corona.RecaudoPagos.BM.Recaudo
         public DTOObjetoGeneralSalida RegistrarRecaudo(DTOObjetoGeneral objDatos)
         {
             DTOObjetoGeneralSalida ObjetoSalida = new DTOObjetoGeneralSalida();
-            DTOMensaje objMensaje = new DTOMensaje();
+			DTOMensaje objMensaje;
             /// validar que el pago no se encuentre registrado
             if (!ValidaPagoDuplicado(objDatos))
             {
