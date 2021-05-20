@@ -6,10 +6,11 @@ pool:
 
 # Variables
 variables:
-  nombreImagen: crrecaudospagoscorona.azurecr.io/imgserviciobancodevops
+  nombreImagen: imgserviciobancodevops
   conexionSonar: Sonar_Corona
   sonarProjectKey: RecaudosServicioBanco
   sonarProjectName: RecaudosServicioBanco
+  containerRegistryName: Dev_Recaudos_Pagos_Corona_Registry
 
 steps:
   - task: SonarQubePrepare@4
@@ -70,7 +71,12 @@ steps:
 
   - task: Docker@2
     inputs:
-      containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
+      containerRegistry: $(containerRegistryName)
+      command: 'login'
+
+  - task: Docker@2
+    inputs:
+      containerRegistry: $(containerRegistryName)
       repository: $(nombreImagen)
       command: 'buildAndPush'
       Dockerfile: 'Dockerfile'
@@ -80,5 +86,3 @@ steps:
       azureSubscription: 'Dev_Recaudos_Pagos_Corona_QA'
       appName: 'RecaudosPagosCorona'
       imageName: '$(nombreImagen)'
-
-  
