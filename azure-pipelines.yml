@@ -85,4 +85,4 @@ steps:
     inputs:
       azureSubscription: 'Dev_Recaudos_Pagos_Corona_QA'
       appName: 'RecaudosPagosCorona'
-      imageName: '$(nombreImagen)'
+      imageName: '$(nombreImagen):$(build.buildId)'
