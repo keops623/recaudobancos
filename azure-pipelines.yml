@@ -80,6 +80,8 @@ steps:
       repository: $(nombreImagen)
       command: 'buildAndPush'
       Dockerfile: 'Dockerfile'
+      tags: |
+        $(tag)
 
   - task: AzureFunctionAppContainer@1
     inputs:
