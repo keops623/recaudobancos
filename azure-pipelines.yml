@@ -6,7 +6,7 @@ pool:
 
 # Variables
 variables:
-  nombreImagen: crrecaudospagoscorona.azurecr.io/imgserviciobancodevops:$(build.buildId)
+  nombreImagen: crrecaudospagoscorona.azurecr.io/imgserviciobancodevops
   conexionSonar: Sonar_Corona
   sonarProjectKey: RecaudosServicioBanco
   sonarProjectName: RecaudosServicioBanco
