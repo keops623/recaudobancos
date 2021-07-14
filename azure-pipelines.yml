@@ -11,6 +11,7 @@ variables:
   sonarProjectKey: RecaudosServicioBanco
   sonarProjectName: RecaudosServicioBanco
   containerRegistryName: Dev_Recaudos_Pagos_Corona_Registry
+  tag: ServicioBanco
 
 steps:
   - task: SonarQubePrepare@4
