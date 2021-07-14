@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SonarProjectConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/analyzer/2021/1">
+  <AnalysisConfigPath>C:\julian\Source\Repos\CC00-RecaudosServicioBanco-NetCore\.sonarqube\conf\SonarQubeAnalysisConfig.xml</AnalysisConfigPath>
+  <ProjectPath>C:\julian\Source\Repos\CC00-RecaudosServicioBanco-NetCore\Corona.RecaudoPagos.BM\Corona.RecaudoPagos.BM.csproj</ProjectPath>
+  <FilesToAnalyzePath>C:\julian\Source\Repos\CC00-RecaudosServicioBanco-NetCore\.sonarqube\conf\8\FilesToAnalyze.txt</FilesToAnalyzePath>
+  <OutPath>C:\julian\Source\Repos\CC00-RecaudosServicioBanco-NetCore\.sonarqube\out\8</OutPath>
+  <ProjectType>Product</ProjectType>
+  <TargetFramework>netstandard2.1</TargetFramework>
+</SonarProjectConfig>

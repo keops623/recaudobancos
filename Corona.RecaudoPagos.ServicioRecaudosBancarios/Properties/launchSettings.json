@@ -1,0 +1,65 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:59172",
+      "sslPort": 44392
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"entidad": "Davivienda",
+				"numMinTimeout": "120",
+				"DataBaseTimeOut": "30",
+				"SegundosTimeOut": "120",
+				"NombreArchivo": "",
+				"UsuarioWS": "CoronaRecaudo",
+				"ContrasenaWS": "QwertAsdfg12345.*",
+				"TextoClave": "QwertAsdfg12345.*",
+				"connectionString": "Server=server-recaudospagoscorona-qa.mysql.database.azure.com; Database=RecaudosPagos; UID=user; password=Ku3KdJYqlS6TR1ESnEu9;"
+			}
+    },
+    "Corona.RecaudoPagos.ServicioRecaudosBancarios": {
+      "commandName": "Project",
+      "launchBrowser": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"entidad": "Davivienda",
+				"numMinTimeout": "120",
+				"DataBaseTimeOut": "30",
+				"SegundosTimeOut": "120",
+				"NombreArchivo": "",
+				"UsuarioWS": "CoronaRecaudo",
+				"ContrasenaWS": "QwertAsdfg12345.*",
+				"TextoClave": "QwertAsdfg12345.*",
+				"connectionString": "Server=server-recaudospagoscorona-qa.mysql.database.azure.com; Database=RecaudosPagos; UID=user; password=Ku3KdJYqlS6TR1ESnEu9;"
+			},
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    },
+		"Docker": {
+			"commandName": "Docker",
+			"launchBrowser": true,
+			"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"entidad": "Davivienda",
+				"numMinTimeout": "120",
+				"DataBaseTimeOut": "30",
+				"SegundosTimeOut": "120",
+				"NombreArchivo": "",
+				"UsuarioWS": "CoronaRecaudo",
+				"ContrasenaWS": "QwertAsdfg12345.*",
+				"TextoClave": "QwertAsdfg12345.*",
+				"connectionString": "Server=server-recaudospagoscorona-qa.mysql.database.azure.com; Database=RecaudosPagos; UID=user; password=Ku3KdJYqlS6TR1ESnEu9;"
+			},
+			"publishAllPorts": true,
+			"useSSL": true
+		}
+  }
+}

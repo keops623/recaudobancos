@@ -1,0 +1,12 @@
+{
+  "ServerUri": "https://sonar.corona.com.co:9443",
+  "Organization": null,
+  "ProjectKey": "RecaudosServicioBanco",
+  "ProjectName": "RecaudosServicioBanco",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AXX3XRy0Ti6qifhfOeUZ",
+      "ProfileTimestamp": "2020-11-23T23:22:40Z"
+    }
+  }
+}

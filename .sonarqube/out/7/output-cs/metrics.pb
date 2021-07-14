@@ -1,0 +1,3 @@
+ï
+oC:\julian\Source\Repos\CC00-RecaudosServicioBanco-NetCore\Corona.RecaudoPagos.Facade\Conversiones\Conversion.csH 8j!&'()*?DEFGHcdefglp∏π∫ªºr◊
+ !+,-./0123456789:;<=>@ABIJKLMNOPQRTUVWXZ[]^hijkmnqrstuvwxyz{|}~ÄÅÇÉÑÖÜáàâäãåéèëíîñóòôöõúùûü†°¢£§•¶ß®©™´¨≠ÆØ±≤¥µ∂Ωæø¿¡¬√ƒ≈∆«»…ÃÕxÇô 0123456789:;<=>AMNOPQUWZ[]mnqtuvwxyz{|}~ÄÅÇÉÑÖÜáàâäãåéèëñóòôöõúùûü†°¢£§•¶ß®©™´¨≠ÆØ±≤¥µ¡¬√ƒ≈∆»

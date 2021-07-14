@@ -1,0 +1,23 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
+ARG source
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+WORKDIR /src
+COPY ["Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj", "Corona.RecaudoPagos.ServicioRecaudosBancarios/"]
+RUN dotnet restore "Corona.RecaudoPagos.ServicioRecaudosBancarios/Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj"
+COPY . .
+WORKDIR "/src/Corona.RecaudoPagos.ServicioRecaudosBancarios"
+RUN dotnet build "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "Corona.RecaudoPagos.ServicioRecaudosBancarios.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "Corona.RecaudoPagos.ServicioRecaudosBancarios.dll"]
