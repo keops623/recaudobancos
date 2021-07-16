@@ -4,9 +4,9 @@ trigger:
 
 resources:
   repositories:
-    - repository: templates
+    - repository: Templates
       type: git
-      name: master-pipelines
+      name: Templates
       ref: 'refs/heads/main'
 
 stages:
