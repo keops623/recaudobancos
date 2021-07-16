@@ -5,9 +5,9 @@ trigger:
 resources:
   repositories:
     - repository: Templates
-      type: CC00-RecaudosServicioBanco-NetCore/git
-      name: Templates
-      ref: 'master'
+      type: git
+      name: CC00-RecaudosServicioBanco-NetCore/Templates
+      ref: 'refs/heads/master'
 
 stages:
   - template: master-corona.yml@Templates
