@@ -10,7 +10,7 @@ resources:
       ref: 'refs/heads/master'
 
 stages:
-  - template: master-corona.yml@Templates
+  - template: azure-pipelines-corona.yml@Templates
     parameters:
       tecnologia: 'netcore'
       nombreImagen: imgserviciobancodevops
