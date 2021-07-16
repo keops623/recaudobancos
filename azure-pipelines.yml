@@ -1,5 +1,4 @@
 trigger:
-- qa
 - develop
 
 resources:
@@ -10,7 +9,7 @@ resources:
       ref: 'refs/heads/master'
 
 stages:
-  - template: azure-pipelines-corona.yml@Templates
+  - template: master-corona.yml@Templates
     parameters:
       tecnologia: 'netcore'
       nombreImagen: imgserviciobancodevops
