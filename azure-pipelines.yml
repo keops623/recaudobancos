@@ -7,7 +7,7 @@ resources:
     - repository: Templates
       type: git
       name: Templates
-      ref: 'refs/heads/main'
+      ref: 'master'
 
 stages:
   - template: master-corona.yml@templates
