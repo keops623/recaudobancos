@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corona.RecaudoPagos.Soporte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corona.Recaudos.ScriptsBD", "Corona.Recaudos.ScriptsBD\Corona.Recaudos.ScriptsBD.csproj", "{C765B989-9281-483E-8450-4157EB970347}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corona.Recaudos.TestProject", "Corona.Recaudos.TestProject\Corona.Recaudos.TestProject.csproj", "{8CC02851-4007-4769-964E-C5B1EEBCC468}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corona.Recaudos.TestProject", "Corona.Recaudos.TestProject\Corona.Recaudos.TestProject.csproj", "{8CC02851-4007-4769-964E-C5B1EEBCC468}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,7 +61,6 @@ Global
 		{008948BF-40E4-4773-B2DF-BD71BB7B577E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{008948BF-40E4-4773-B2DF-BD71BB7B577E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C765B989-9281-483E-8450-4157EB970347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C765B989-9281-483E-8450-4157EB970347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C765B989-9281-483E-8450-4157EB970347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C765B989-9281-483E-8450-4157EB970347}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CC02851-4007-4769-964E-C5B1EEBCC468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
