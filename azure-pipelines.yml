@@ -1,59 +1,28 @@
 trigger:
 - develop
 
-pool:
-  vmImage: ubuntu-latest
+resources:
+  repositories:
+    - repository: Templates
+      type: git
+      name: CC00-RecaudosServicioBanco-NetCore/Templates
+      ref: 'refs/heads/master'
 
-# Variables
-variables:
-  nombreImagen: imgserviciobancodevops
-
-steps:
-  - task: SonarQubePrepare@4
-    enabled: true
-    inputs:
-      SonarQube: 'Sonar_Corona'
-      scannerMode: 'MSBuild'
-      ProjectKey: 'RecaudosServicioBanco'
-      ProjectName: 'RecaudosServicioBanco'
-
-  - task: DotNetCoreCLI@2
-    inputs:
-      command: 'build'
-      projects: '**/*.csproj'
-      arguments: '--output publish_output --configuration Release'
-  
-  - task: SonarQubeAnalyze@4
-
-  - task: sonar-buildbreaker@8
-    inputs:
-      SonarQube: 'Sonar_Corona'
-
-  - task: SonarQubePublish@4
-    inputs:
-      pollingTimeoutSec: '300'
-
-  - task: DotNetCoreCLI@2
-    # displayName: Publish
-    inputs:
-      command: 'publish'
-      publishWebProjects: true
-      arguments: '-c Release -o $(System.DefaultWorkingDirectory)/publish/project'
-      zipAfterPublish: false
-      modifyOutputPath: false
-      workingDirectory: '$(System.DefaultWorkingDirectory)/'
-
-  - task: ArchiveFiles@2
-    inputs: 
-      rootFolderOrFile: '$(Build.BinariesDirectory)'
-      includeRootFolder: true
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-      replaceExistingArchive: true
-
-  # - task: Docker@2
-    # inputs:
-      # containerRegistry: 'Dev_Recaudos_Pagos_Corona_Registry'
-      # repository: $(nombreImagen)
-      # command: 'buildAndPush'
-      # Dockerfile: 'Dockerfile'
+stages:
+  - template: master-corona.yml@Templates
+    parameters:
+      tecnologia: 'netcore'
+      nombreImagen: imgserviciobancodevops
+      conexionSonar: Sonar_Corona
+      sonarProjectKey: RecaudosServicioBanco
+      sonarProjectName: RecaudosServicioBanco
+      containerRegistryName: Dev_Recaudos_Pagos_Corona_Registry
+      tag: ServicioBanco
+            
+      # parametros para deploy
+      artifactDocker: true #Condicion de IF para saber si se realiza Docker Push
+      cloud: 'azure' # parametro para iniciar CD de Azure con Docker para implementar
+      deployType: 'docker'
+      repoName: 'CC00-RecaudosServicioBanco-NetCore' #NO! tocar, solo equipo DevSecOps
+      serviceName: 'service' #NO! tocar, solo equipo DevSecOps
+      projectName: 'recaudos'
