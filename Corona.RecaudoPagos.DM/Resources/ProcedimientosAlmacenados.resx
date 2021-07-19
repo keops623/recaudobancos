@@ -132,6 +132,9 @@
   <data name="SP_INSERTA_CLIENTE" xml:space="preserve">
     <value>SP_INSERTA_CLIENTE</value>
   </data>
+  <data name="SP_INSERTA_LOGREQUEST" xml:space="preserve">
+    <value>SP_INSERTA_LOGREQUEST</value>
+  </data>
   <data name="SP_INSERTA_RECAUDO" xml:space="preserve">
     <value>SP_INSERTA_RECAUDO</value>
   </data>

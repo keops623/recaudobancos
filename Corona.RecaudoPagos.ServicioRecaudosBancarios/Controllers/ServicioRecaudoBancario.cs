@@ -2,6 +2,7 @@ using Corona.RecaudoPagos.BM.Auditoria;
 using Corona.RecaudoPagos.BM.Clientes;
 using Corona.RecaudoPagos.BM.Recaudo;
 using Corona.RecaudoPagos.BM.UsuarioAcceso;
+using Corona.RecaudoPagos.BM.Log;
 using Corona.RecaudoPagos.DT.DTO;
 using Corona.RecaudoPagos.DT.General;
 using Corona.RecaudoPagos.DT.Notificacion;
@@ -75,7 +76,16 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 		[HttpPost]
 		[Route("consultaRecaudo")]
 		public @return consultaRecaudo(ConsultaDto dto)
-		{	
+		{
+			if (Environment.GetEnvironmentVariable("HabilitarLog").Equals("true")){
+				using (StringWriter stringwriv = new StringWriter())
+				{
+					XmlSerializer serializerLog = new XmlSerializer(typeof(ConsultaDto));
+					serializerLog.Serialize(stringwriv, dto);
+					BMLogRequest.InsertaLogRequest(stringwriv.ToString(), DateTime.Now, "consultaRecaudo");
+				}
+			}
+
 			DTOMensaje objMensaje = new DTOMensaje();
 			@return responseData = new @return();
 			try
@@ -114,6 +124,17 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 		[Route("notificacionRecaudo")]
 		public @return notificacionRecaudo(RecaudoDto dto)
 		{
+			if (Environment.GetEnvironmentVariable("HabilitarLog").Equals("true"))
+			{
+				using (StringWriter stringwriv = new StringWriter())
+				{
+					XmlSerializer serializerLog = new XmlSerializer(typeof(RecaudoDto));
+					serializerLog.Serialize(stringwriv, dto);
+					BMLogRequest.InsertaLogRequest(stringwriv.ToString(), DateTime.Now, "notificacionRecaudo");
+				}
+			}
+			
+			
 			DTOMensaje objMensaje = new DTOMensaje();
 			@return responseData = new @return();
 			try
@@ -180,6 +201,16 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 		[Route("VerificarEstadoWebService")]
 		public VerificarEstadoResponseDto VerificarEstadoWebService(VerificarEstadoDto SignonRq)
 		{
+			if (Environment.GetEnvironmentVariable("HabilitarLog").Equals("true"))
+			{
+				using (StringWriter stringwriv = new StringWriter())
+				{
+					XmlSerializer serializerLog = new XmlSerializer(typeof(VerificarEstadoDto));
+					serializerLog.Serialize(stringwriv, SignonRq);
+					BMLogRequest.InsertaLogRequest(stringwriv.ToString(), DateTime.Now, "VerificarEstadoWebService");
+				}
+			}
+
 			VerificarEstadoResponseDto responseData = new VerificarEstadoResponseDto();
 			try
 			{

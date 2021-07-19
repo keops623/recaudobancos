@@ -1,0 +1,68 @@
+USE `RecaudosPagos`;
+DROP procedure IF EXISTS `SP_CONSULTA_RECAUDOS_NOTIFICAR`;
+SET NOCOUNT ON
+DELIMITER $$
+USE `RecaudosPagos`$$
+CREATE DEFINER=`RecaudosPagos`@`%` PROCEDURE `SP_CONSULTA_RECAUDOS_NOTIFICAR`(IN_CLAVE VARCHAR(20))
+BEGIN
+	DROP TABLE IF EXISTS TemRecaudos;
+	CREATE TEMPORARY TABLE TemRecaudos (RECAUDO_ID varchar(20), SOCIEDAD varchar(4), SOLICITANTE varchar(16),
+    CLASE_DOC_RECAUDO varchar(10), FEC_RECAUDO CHAR(20), FECHA_SISTEMA CHAR(20), MONEDA varchar(3), COD_CONFIRMA_RECAUDO varchar(16),
+    CANAL_RECAUDO varchar(2), OFI_RECAUDO varchar(6), TERMI_RECAUDO varchar(6), CTA_CONTABLE varchar(10),VALOR_RECAUDADO CHAR(100),
+    Posicion CHAR(1), ClaseCuenta CHAR(1), NIT_PAGADOR varchar(100), RefFact CHAR(1));
+    
+    INSERT INTO TemRecaudos 
+	SELECT DISTINCT 
+		CAST(Rec.RECAUDO_ID AS CHAR(20)) RECAUDO_ID,
+		Cl.SOCIEDAD,
+		CASE 
+			WHEN LTRIM(RTRIM(Rec.SOLICITANTE)) = '' THEN  CAST(AES_DECRYPT(Cl.Cliente, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8)
+			WHEN LTRIM(RTRIM(Rec.SOLICITANTE)) IS NULL THEN CAST(AES_DECRYPT(Cl.Cliente, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8)
+            WHEN LTRIM(RTRIM(Cl3.Cliente)) IS NOT NULL OR LTRIM(RTRIM(Cl3.Cliente)) != '' THEN CAST(AES_DECRYPT(Cl3.Cliente, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8)
+			ELSE CAST(AES_DECRYPT(IFNULL(Cl2.Cliente,Rec.SOLICITANTE), IN_CLAVE) AS CHAR(100) CHARACTER SET utf8) END SOLICITANTE,
+		Param.CLASE_DOC_RECAUDO,
+		CAST(Rec.FEC_RECAUDO AS CHAR(20)) FEC_RECAUDO,
+		CAST(NOW() AS CHAR(20)) AS FECHA_SISTEMA,
+		Rec.MONEDA,
+		Rec.COD_CONFIRMA_RECAUDO,
+		Rec.CANAL_RECAUDO,
+		Rec.OFI_RECAUDO,
+		Rec.TERMI_RECAUDO,
+		Param.CTA_CONTABLE,
+		CAST(AES_DECRYPT(Rec.VALOR_RECAUDADO, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8) VALOR_RECAUDADO,
+        '1' AS Posicion,
+		'D' AS ClaseCuenta,
+        CASE WHEN Cl.cliente = Cl3.central AND Cl.NIT != '' THEN CAST(AES_DECRYPT(Cl.NIT, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8)
+        WHEN Cl.cliente = Cl3.Cliente AND Cl.NIT != '' THEN CAST(AES_DECRYPT(Cl.NIT, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8)
+        ELSE CAST(AES_DECRYPT(Rec.NIT_PAGADOR, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8) END NIT_PAGADOR,
+		'' AS RefFact 
+	FROM Recaudos Rec
+    INNER JOIN Parametros Param ON Rec.COD_BANCO = Param.COD_BANCO AND Rec.CONVENIO = Param.CONVENIO
+	LEFT JOIN Clientes Cl3 ON Rec.SOLICITANTE = Cl3.Cliente AND  Rec.NIT_PAGADOR = Cl3.Cliente
+	LEFT JOIN Clientes Cl2 ON Cl2.Cliente = Rec.Solicitante OR Cl2.NIT = Rec.Solicitante 
+    INNER JOIN Clientes Cl 
+			ON (Cl.Sociedad = Param.Sociedad and Cl.NIT = Rec.NIT_PAGADOR AND Cl.cliente = Cl2.Central) 
+            OR (Cl.Sociedad = Param.Sociedad and Rec.Solicitante = Rec.NIT_PAGADOR AND Cl.cliente = Cl2.cliente AND  CAST(AES_DECRYPT(Cl.NIT, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8) != '')
+			OR (Cl.Sociedad = Param.Sociedad and Rec.Solicitante = Cl.Cliente AND Rec.NIT_PAGADOR = Cl.NIT)
+            OR (Cl.Sociedad = Param.Sociedad and Cl3.Central = Cl.Cliente AND  CAST(AES_DECRYPT(Cl.NIT, IN_CLAVE) AS CHAR(100) CHARACTER SET utf8) != '')
+	WHERE Rec.ESTADO_RECAUDO IN ('1','01','3','03');
+    
+    /*Cambia estado a 99 marcar como intento de envío, 
+    si se envía correcto se activa otro hilo interno en el código del servicio 
+    que se encarga de cambiar estado a 02 'notificado' */
+    UPDATE Recaudos r
+    INNER JOIN TemRecaudos t ON r.RECAUDO_ID = t.RECAUDO_ID
+    SET ESTADO_RECAUDO = '99'
+	WHERE t.VALOR_RECAUDADO IS NOT NULL;
+    
+    SELECT RECAUDO_ID, SOCIEDAD, SOLICITANTE, CLASE_DOC_RECAUDO, FEC_RECAUDO, FECHA_SISTEMA, MONEDA, COD_CONFIRMA_RECAUDO, 
+    CANAL_RECAUDO, OFI_RECAUDO, TERMI_RECAUDO, CTA_CONTABLE, VALOR_RECAUDADO, Posicion, ClaseCuenta, NIT_PAGADOR, RefFact
+    FROM TemRecaudos
+    WHERE VALOR_RECAUDADO IS NOT NULL
+    ORDER BY RECAUDO_ID;
+    
+    DROP TABLE IF EXISTS TemRecaudos;
+END$$
+
+DELIMITER ;
+

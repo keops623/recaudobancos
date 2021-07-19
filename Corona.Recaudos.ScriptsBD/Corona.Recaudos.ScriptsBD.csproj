@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C765B989-9281-483E-8450-4157EB970347}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Corona.Recaudos.ScriptsBD</RootNamespace>
+    <AssemblyName>Corona.Recaudos.ScriptsBD</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <CodeAnalysisRuleSet>..\.sonarlint\recaudopagoscsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\.sonarlint\recaudopagoscsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\.sonarlint\recaudopagoscsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.sonarlint\recaudopagoscsharp.ruleset">
+      <Link>recaudopagoscsharp.ruleset</Link>
+    </None>
+    <None Include="Scripts\CREATE PROCEDURE SP_CONSULTA_CLIENTE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_CONSULTA_RECAUDOS_NOTIFICAR.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_CONSULTA_SOCIEDAD.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_INSERTA_CLIENTE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_INSERTA_RECAUDO.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_MODIFICA_RECAUDONOTIFICADO.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_VALIDA_RECAUDO_DUPLICADO.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE TABLE AUDITORIA.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE TABLE CLIENTES.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE TABLE ESTADO_RECAUDO.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE TABLE PARAMETROS.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE TABLE RECAUDOS.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\INSERT INTO ESTADO_RECAUDO.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\INSERT INTO PARAMETROS.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CREATE PROCEDURE SP_INSERTA_AUDITORIA.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Utiles.SQL" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\recaudopagos\CSharp\SonarLint.xml">
+      <Link>SonarLint.xml</Link>
+    </AdditionalFiles>
+    <Content Include="Scripts\CREATE PROCEDURE SP_CONSULTA_RECAUDOS_AUDITORIA.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_CONSULTA_USUARIO_ACCESO.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_INSERTA_LOGREQUEST.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_MODIFICA_AUDITORIA_PROCESADA.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_MODIFICA_RECAUDOPENDIENTECLIENTE.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_MODIFICA_RECAUDO_REPROCESAR.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_CONSULTA_AUDITORIA.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_CONSULTA_CLIENTES.sql" />
+    <Content Include="Scripts\CREATE PROCEDURE SP_CONSULTA_MOVIMIENTOS.sql" />
+    <Content Include="Scripts\CREATE TABLE LOGREQUEST.sql" />
+    <Content Include="Scripts\CREATE TABLE USUARIO_ACCESO.sql" />
+    <Content Include="Scripts\INSERT INTO USUARIO_ACCESO.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
