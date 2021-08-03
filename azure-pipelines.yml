@@ -5,7 +5,7 @@ resources:
   repositories:
     - repository: Templates
       type: git
-      name: CC00-RecaudosServicioBanco-NetCore/Templates
+      name: Templates/Templates
       ref: 'refs/heads/master'
 
 stages:
@@ -16,8 +16,9 @@ stages:
       conexionSonar: Sonar_Corona
       sonarProjectKey: RecaudosServicioBanco
       sonarProjectName: RecaudosServicioBanco
+      sonarPathCoverage: '**/jacocoTestReport.xml'
       containerRegistryName: Dev_Recaudos_Pagos_Corona_Registry
-      tag: ServicioBanco
+      tag: $(build.buildId)
             
       # parametros para deploy
       artifactDocker: true #Condicion de IF para saber si se realiza Docker Push
