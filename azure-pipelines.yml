@@ -11,14 +11,21 @@ resources:
 stages:
   - template: master-corona.yml@Templates
     parameters:
-      tecnologia: 'netcore'
-      nombreImagen: imgserviciobancodevops
-      conexionSonar: Sonar_Corona
+      
+      # CI
+      technology: 'netcore'
+      connectionSonar: Sonar_Corona
       sonarProjectKey: RecaudosServicioBanco
       sonarProjectName: RecaudosServicioBanco
       sonarPathCoverage: '**/jacocoTestReport.xml'
-      containerRegistryName: Dev_Recaudos_Pagos_Corona_Registry
+      
+      # CD
+      imageName: imgserviciobancodevops
+      containerRegistryName: dev_recaudos_pagos_corona_registry
       tag: $(build.buildId)
+      azureSubscription:  dev_recaudos_pagos_corona_qa
+      appFunctionName: 'RecaudosPagosCorona'
+      containerRegistryURL: crrecaudospagoscorona.azurecr.io
             
       # parametros para deploy
       artifactDocker: true #Condicion de IF para saber si se realiza Docker Push
