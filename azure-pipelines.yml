@@ -2,7 +2,7 @@ trigger:
 - develop
 
 variables:
-  environment: dev/qa/prod
+  environment: $(environment)
 
 
 resources:
