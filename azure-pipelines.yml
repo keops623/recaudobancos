@@ -1,10 +1,6 @@
 trigger:
 - develop
 
-variables:
-  environment: $(environment)
-
-
 resources:
   repositories:
     - repository: Templates
