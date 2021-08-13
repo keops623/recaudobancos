@@ -1,6 +1,10 @@
 trigger:
 - develop
 
+variables:
+  environment: dev/qa/prod
+
+
 resources:
   repositories:
     - repository: Templates
