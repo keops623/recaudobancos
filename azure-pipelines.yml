@@ -12,13 +12,16 @@ stages:
   - template: master-corona.yml@Templates
     parameters:
       
+      variables:
+      - group: RecaudosPagos-QA
+      
       # CI
       technology: 'netcore'
       connectionSonar: Sonar_Corona
       sonarProjectKey: RecaudosServicioBanco
       sonarProjectName: RecaudosServicioBanco
       sonarPathCoverage: '**/jacocoTestReport.xml'
-      sonarExecution: 'true'
+      sonarExecution: 'false'
       
       # CD
       imageName: imgserviciobancodevops
