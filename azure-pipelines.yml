@@ -18,7 +18,7 @@ stages:
       sonarProjectKey: RecaudosServicioBanco
       sonarProjectName: RecaudosServicioBanco
       sonarPathCoverage: '**/jacocoTestReport.xml'
-      sonarExecution: 'false'
+      sonarExecution: 'true'
       
       # CD
       imageName: imgserviciobancodevops
