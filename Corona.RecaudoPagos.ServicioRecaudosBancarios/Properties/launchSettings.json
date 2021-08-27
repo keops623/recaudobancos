@@ -59,7 +59,7 @@
 				"ContrasenaWS": "QwertAsdfg12345.*",
 				"TextoClave": "QwertAsdfg12345.*",
 				"HabilitarLog": "true",
-				"connectionString": "Server=server-recaudospagoscorona-qa.mysql.database.azure.com; Database=RecaudosPagos; UID=user; password=Ku3KdJYqlS6TR1ESnEu9;"
+				"connectionString": "#{ connectionString }#"//"Server=server-recaudospagoscorona-qa.mysql.database.azure.com; Database=RecaudosPagos; UID=user; password=Ku3KdJYqlS6TR1ESnEu9;"
 			},
 			"publishAllPorts": true,
 			"useSSL": true
