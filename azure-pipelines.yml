@@ -12,6 +12,9 @@ stages:
   - template: master-corona.yml@Templates
     parameters:
       
+      variables:
+      - group: RecaudosPagos-QA
+      
       # CI
       technology: 'netcore'
       connectionSonar: Sonar_Corona
@@ -31,7 +34,7 @@ stages:
       # CD PROD
       containerRegistryName_Prod: prd_recaudos_pagos_corona_registry
       tag_Prod: $(build.buildId)
-      imageName_Prod: imgserviciobancodevops_prd
+      imageName_Prod: imgserviciobancodevopsprd
       azureSubscription_Prod:  'prd_recaudos_pagos_corona'
       appContainerFunctionName_Prod: 'ServicioRecaudosPagosCorona'
       containerRegistryURL_Prod: crrecaudospagoscoronaprd.azurecr.io
