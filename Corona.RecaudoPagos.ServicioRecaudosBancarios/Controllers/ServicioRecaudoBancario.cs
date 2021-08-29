@@ -139,6 +139,7 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			@return responseData = new @return();
 			try
 			{
+				BMLogRequest.InsertaLogRequest("Inicio Metodo NotificacionRecaudo", DateTime.Now, "notificacionRecaudo");
 				bool UserAutenticado = ServicioRecaudoBancarioAuth();
 				BMLogRequest.InsertaLogRequest(UserAutenticado.ToString(), DateTime.Now, "Trace");
 				DTOObjetoGeneralSalida ObjetoSalida = new DTOObjetoGeneralSalida();
