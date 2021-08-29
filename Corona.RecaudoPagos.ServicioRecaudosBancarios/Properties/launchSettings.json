@@ -53,7 +53,7 @@
 				"entidad": "Davivienda",
 				"numMinTimeout": "120",
 				"DataBaseTimeOut": "30",
-				"SegundosTimeOut": "120",
+				"SegundosTimeOut": "121",
 				"NombreArchivo": "",
 				"UsuarioWS": "CoronaRecaudo",
 				"ContrasenaWS": "QwertAsdfg12345.*",
