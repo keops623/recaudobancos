@@ -139,9 +139,7 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 			@return responseData = new @return();
 			try
 			{
-				BMLogRequest.InsertaLogRequest("Inicio Metodo NotificacionRecaudo", DateTime.Now, "notificacionRecaudo");
 				bool UserAutenticado = ServicioRecaudoBancarioAuth();
-				BMLogRequest.InsertaLogRequest(UserAutenticado.ToString(), DateTime.Now, "Trace");
 				DTOObjetoGeneralSalida ObjetoSalida = new DTOObjetoGeneralSalida();
 				List<DTOObjetoGeneral> ObjetoEntrada;
 				Conversion Convertir = new Conversion();
@@ -154,17 +152,14 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 						CodigoError = objMensaje.Valor
 					};
 					responseData.codigoRespuestaNotificacion = ObjetoSalida.CodigoError;
-					BMLogRequest.InsertaLogRequest(ObjetoSalida.DescripcionError, DateTime.Now, "notificacionRecaudo");
 				}
 				else
 				{
 					ObjetoEntrada = Convertir.ConvertirObjetoRecaudoToDTOGeneral(dto);
-					BMLogRequest.InsertaLogRequest("Convirtio Objeto Entrada", DateTime.Now, "notificacionRecaudo");
 					DateTime time = DateTime.Now;
 					foreach (DTOObjetoGeneral objetoGeneral in ObjetoEntrada)
 					{
 						ObjetoSalida = new BMRecaudo().RealizarRecaudo(objetoGeneral, time);
-						BMLogRequest.InsertaLogRequest("Realiza Recaudo", DateTime.Now, "notificacionRecaudo");
 						using (StringWriter stringwriter = new StringWriter())
 						{
 							XmlSerializer serializer = new XmlSerializer(typeof(RecaudoDto));
@@ -186,19 +181,16 @@ namespace Corona.RecaudoPagos.ServicioRecaudosBancarios.Controllers
 								Fecha = DateTime.Now,
 								Recaudo_ID = RecaudoId.ToString(),
 							});
-							BMLogRequest.InsertaLogRequest("Registro Auditoria", DateTime.Now, "notificacionRecaudo");
 						}
 					}
 				}
 				responseData = Convertir.ConvertirDTOSalidaToObjetoPago(ObjetoSalida);
-				BMLogRequest.InsertaLogRequest("Genero objeto respuesta", DateTime.Now, "notificacionRecaudo");
 				return responseData;
 			}
 			catch (Exception ex)
 			{
 				objMensaje = DTOMensaje.GetMensaje(DTOCodigoMensajes.BANCO_MENSAJE10, TipoMensaje.Banco);
 				responseData.codigoRespuestaNotificacion = objMensaje.Valor + ".Excepción: " + ex;
-				BMLogRequest.InsertaLogRequest(ex.Message + " | " + ex.StackTrace, DateTime.Now, "notificacionRecaudo");
 				return responseData;
 			}
 		}
