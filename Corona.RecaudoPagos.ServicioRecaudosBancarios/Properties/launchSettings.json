@@ -56,7 +56,7 @@
 				"UsuarioWS": "CoronaRecaudo",
 				"ContrasenaWS": "QwertAsdfg12345.*",
 				"TextoClave": "QwertAsdfg12345.*",
-				"connectionString": "Server=server-recaudospagoscorona-prd.mysql.database.azure.com; Database=recaudospagos; UID=recaudospagos; password=jrsSyRtLbvto2lQe9bFW;"
+				"connectionString":  "#{connectionStringPROD}#" //"Server=server-recaudospagoscorona-prd.mysql.database.azure.com; Database=recaudospagos; UID=recaudospagos; password=jrsSyRtLbvto2lQe9bFW;"
 			},
 			"publishAllPorts": true,
 			"useSSL": true
