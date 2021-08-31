@@ -9,10 +9,10 @@ namespace Corona.Recaudos.TestProject
         {
         }
 
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
+        //[Test]
+        //public void Test1()
+        //{
+        //    Assert.Pass();
+        //}
     }
 }
