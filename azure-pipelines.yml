@@ -30,6 +30,7 @@ stages:
       azureSubscription:  dev_recaudos_pagos_corona_qa
       appFunctionName: 'RecaudosPagosCorona'
       containerRegistryURL: crrecaudospagoscorona.azurecr.io
+      resourceGroupName: 'RG-RecaudosPagosCorona_QA'
 
       # CD PROD
       containerRegistryName_Prod: prd_recaudos_pagos_corona_registry
@@ -38,6 +39,7 @@ stages:
       azureSubscription_Prod:  'prd_recaudos_pagos_corona'
       appContainerFunctionName_Prod: 'ServicioRecaudosPagosCorona'
       containerRegistryURL_Prod: crrecaudospagoscoronaprd.azurecr.io
+      resourceGroupName_Prod: 'RG-RecaudosPagosCorona-PRD'
             
       # parametros para deploy
       artifactDocker: true #Condicion de IF para saber si se realiza Docker Push
