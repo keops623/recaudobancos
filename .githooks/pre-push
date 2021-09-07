@@ -1,0 +1,63 @@
+#!/bin/bash
+# Githooks .Net Core 5.0
+
+# Variables
+protected_branch='master'
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+RED='\033[0;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# ejecucion inicial del Script
+if [[ $current_branch = $current_branch ]] ; then
+    echo -e "${YELLOW}Running pre-push Githook build check to your branch...${NC}"
+    
+    DOTNET_CLI_TELEMETRY_OPTOUT=1
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+    
+    # build the project
+    echo -e "${YELLOW}Running Build Recaudos Banco... ${NC}"
+    echo ""
+    
+
+    # dotnet build/msbuild .sln or .csproj
+    # La ruta para la compilacion opcionalmente se puede agregar: 'C:**\CC00-RecaudosServicioBanco-NetCore'
+    dotnet build
+    
+    # $? es una variable shell que almacena el codigo de regreso de lo que acabamos de ejecutar (compilacion)
+     rc=$? 
+    if [[ $rc != 0 ]] ; then
+        echo -e "${RED}Failed to build the project Recaudos Banco, please fix build compilation and push again to the branch ${NC}"
+        echo ""
+        exit $rc
+    fi
+
+    echo -e "${YELLOW}Running Unit Tests Recaudos Banco...${NC}"
+    echo ""
+
+    # la ruta para la ejecucion de las pruebas unitarias opcionalmente se puede agregar:  cd 'C:\**\CC00-RecaudosServicioBanco-NetCore\Corona.Recaudos.TestProject'
+    # se pueden agregar dotnet test con uan ruta especifica en caso que se requiera ejecutar una carpeta especifica
+
+    echo -e "${YELLOW}Running unit tests...${NC}"
+    echo ""
+
+    #run dotnet test
+    dotnet test
+
+    # $? es una variable shell que almacena el codigo de regreso de lo que acabamos de ejecutar (Unit Test)
+    rc=$?
+    if [[ $rc != 0 ]] ; then
+        # un codigo disinto a cero significa que un error ecurrio, muestra el mensaje al usuario y se sale del script
+        echo -e "${RED}Unit tests failed, please fix and push again to the branch${NC}"
+        echo ""
+        exit $rc
+    fi
+
+
+    # Pasa la compilacion y ejecucion de pruebas unitarias del Pre-Push
+    echo -e "${GREEN}¡Pre push check passed! compilation OK ${NC}"
+    echo ""
+fi
+
+exit 0
